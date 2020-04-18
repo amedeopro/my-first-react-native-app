@@ -11,7 +11,7 @@ export default function App() {
   }
 
   const addGoalHandler = () => {
-    setArrayGoal([...arrayGoal, {key : Math.random().toString(), value : enteredGoal}])
+    setArrayGoal([...arrayGoal, { id: Math.random().toString(), value: enteredGoal }])
   }
 
   return (
@@ -26,11 +26,14 @@ export default function App() {
         />
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
-    <FlatList data={arrayGoal} renderItem={itemData => (<View style={styles.listItem}>
+      <FlatList
+        keyExtractor={(item, index) => item.id}
+        data={arrayGoal}
+        renderItem={itemData => (<View style={styles.listItem}>
           <Text>
             {itemData.item.value}
           </Text>
-    </View>)} />
+        </View>)} />
     </View>
   );
 }
