@@ -10,6 +10,7 @@ export default function App() {
 
   const addGoalHandler = goalTitle => {
     setArrayGoal([...arrayGoal, { id: Math.random().toString(), value: goalTitle }])
+    setModalVisible(false)
   }
 
   const removeGoalHandler = goalId => {
@@ -18,11 +19,15 @@ export default function App() {
     })
   }
 
+  const cancelBtn = () =>{
+    setModalVisible(false)
+  }
+
   return (
     <View
       style={styles.screen}>
-      <Button title="Addn new goal" onPress={() => setModalVisible(true)} />
-      <GoalInput isVisible={modalVisible} onAddGoal={addGoalHandler} closeModal={() => setModalVisible(false)}/>
+      <Button title="Add new goal" onPress={() => setModalVisible(true)} />
+      <GoalInput isVisible={modalVisible} onAddGoal={addGoalHandler} closeModal={cancelBtn}/>
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={arrayGoal}
