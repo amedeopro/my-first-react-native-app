@@ -9,6 +9,9 @@ export default function App() {
   const [modalVisible, setModalVisible] = useState(false)
 
   const addGoalHandler = goalTitle => {
+    if(goalTitle.length === 0){
+      return;
+    }
     setArrayGoal([...arrayGoal, { id: Math.random().toString(), value: goalTitle }])
     setModalVisible(false)
   }
